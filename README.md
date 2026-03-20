@@ -41,9 +41,60 @@ For each level, a non-functioning network diagram is presented and must be modif
 # Resources
 
 ## Networking resources covered by the project
-- TCP/IP and IPv4
-	- 
-- Private IP address ranges, Link-local addresses
+- TCP/IP
+	- TCP/IP (Internet Protocol Suite) is the framework for explaining how data is communicated between devices over a network.
+	- Uses standardised protocols to ensure reliable and efficient transmission
+	- TCP (Transmission Control Protocol): Protocol to ensure data arrives exactly as it was sent.
+		- NetPractice simulates the TCP connection process to help understand why connections work or fail.
+- IPv4
+	- A 32-bit number of an IP address.
+		- Divided into 4 "blocks";
+		- e.g. `192.168.100.1` is represented as `11000000.10101000.01100100.00000001`
+	- NetPractice only utilises IPv4 addresses and not IPv6.
+- Special IP ranges
+	- Certain address ranges are reserved for Private Networks:
+		- 10.0.0.0 - 10.255.255.255
+		- 172.16.0.0 – 172.31.255.255
+		- 192.168.0.0 – 192.168.255.255
+	- The following address range is reserved for so-called loopback addresses:
+		- 127.0.0.0 – 127.255.255.255
+	- While there are more special IP ranges (e.g. Link-local addresses, `169.254.0.0/16`), for NetPractice these are the main ones that the evaluatee has to deal with.
 - Subnet masks, splitting an IPv4 address into network and host parts
+	- Subnet masks determine which part of the IP is the Network ID and which part if the Host ID
+		- e.g. `/24` or `255.255.255.0`
+	- A higher bitmask (like `/30` vs `/24`) simply means a longer prefix, which results in a smaller host portion (fewer available IP addresses).
+	- In a host portion, the first address (Network ID) and the last address (Broadcast ID) cannot be assigned to an interface.
+	- In general, it's good practice to make subnets only as big as they need to be, for security reasons.
 - Switches and Routers
+	- Switches connect devices between the same local network
+		- Devices connected to it must be on the same subnet.
+	- Routers connect different networks together.
+		- Requires an interface for each network it connects to, and each must be configured correctly for traffic to pass to and fro.
+	- Routers are necessary for an Internet connection, while switches are only used for interconnecting devices.
 - Routing Tables
+	- A map stored in a router or host.
+	- Each entry consists of **destination** and **next hop**. i.e. "If you want to send the packet to **destination**, send it to **next hop**.
+	- The **next hop** must always be an IP address reachable within the router's own local network.
+	- A default gateway (`default` or `0.0.0.0/0`) can be specified as a catch-all for destinations.
+
+### Additional web resources
+Wikipedia:
+- https://en.wikipedia.org/wiki/Internet_protocol_suite
+- https://en.wikipedia.org/wiki/Transmission_Control_Protocol
+- https://en.wikipedia.org/wiki/Internet_Protocol
+- https://en.wikipedia.org/wiki/IPv4
+- https://en.wikipedia.org/wiki/Private_network
+- https://en.wikipedia.org/wiki/Loopback#Virtual_loopback_interface
+
+Cloudflare documentation:
+- https://www.cloudflare.com/learning/network-layer/what-is-a-network-switch/
+
+GeeksforGeeks:
+- https://www.geeksforgeeks.org/computer-networks/differences-between-ipv4-and-ipv6/
+- https://www.geeksforgeeks.org/computer-networks/routing-tables-in-computer-network/
+
+Reddit community-sourced information:
+- https://www.reddit.com/r/explainlikeimfive/comments/w2715i/eli5_how_does_a_switch_work_in_a_network/
+
+### AI Usage
+In this project, AI chatbots (Gemini) was used to help undertstand the relationship between the several topics covered by this project, as well as to help refine the README through error-checking (factual and grammatical).
